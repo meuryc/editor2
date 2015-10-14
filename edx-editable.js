@@ -853,8 +853,7 @@ Editable.prototype = {
             blocks = editable.selectedBlocks().clone();
 
         function removeUnselected(){
-            /* jshint is confused here */
-            var nodes = $(this).leafNodes();
+            var nodes = $(this).leafNodes(); /* jshint ignore:line */
             $.each(nodes, function(){
                 if($(this).closest('.selected').length === 0){
                     $(topSingleParentAncestor(this)).remove();
@@ -1018,7 +1017,7 @@ Editable.prototype = {
                 $(this.selection_info().blockList.pop()).after(nodes);
                 break;
             case "before":
-                target = this.find(options.target);
+                var target = this.find(options.target);
                 if( target.length ){
                     target.first().before(nodes);
                 } else {
@@ -1144,7 +1143,7 @@ Editable.prototype = {
         this.focus();
     },
     isEmail: function(text){
-        // jshint is mistaken about this regex
+        // js-hint is mistaken about this regex
         return text.match(/^(mailto:)?([A-Z0-9._%+\-]+@[A-Z0-9.\-]+\.[A-Z]{2,4})$/i);
     },
     isURL: function(text){
